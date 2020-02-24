@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+   xmlns:mvc="http://www.springframework.org/schema/mvc"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:tx="http://www.springframework.org/schema/tx"
+   xmlns:aop="http://www.springframework.org/schema/aop"
+   xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+      http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+   
+   <bean id="loggingAspect" class="com.spring.batch.comm.aop.LoggingAop" />
+
+   <aop:config>
+      <aop:aspect ref="loggingAspect">
+         <aop:pointcut id="loggingPointCut" expression="execution(* com.spring.batch..*Impl.*(..))" />
+         <aop:around method="aroundAdvice" pointcut-ref="loggingPointCut" />
+      </aop:aspect>
+   </aop:config>
+   
+   <aop:config>
+      <aop:pointcut id="transactionManager" expression="execution(* com.spring.batch..*Impl.*(..)) 
+                                               AND NOT execution(* com.spring.batch..*Impl.*(..))" />
+      <aop:advisor advice-ref="txAdvice" pointcut-ref="transactionManager" />
+   </aop:config>
+   
+   <aop:config>
+      <aop:pointcut id="txMethod" expression="execution(* com.spring.batch..*Impl.*(..)) 
+                                      AND NOT execution(* com.spring.batch..*Impl.*(..))" />
+      <aop:advisor advice-ref="txAdvice" pointcut-ref="txMethod" />
+   </aop:config>
+   
+</beans>

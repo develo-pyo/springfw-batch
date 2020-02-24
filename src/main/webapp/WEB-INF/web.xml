@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	
+	<context-param>
+	   <param-name>contextConfigLocation</param-name>
+	   <param-value>
+				  classpath*:context/batch/context-*.xml
+				, classpath*:context/spring/context-*.xml
+				, classpath*:batch/job/*.xml
+	   </param-value>
+	</context-param>
+
+	<servlet>
+	   <servlet-name>appServlet</servlet-name>
+	   <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	   <init-param>
+	   <param-name>contextConfigLocation</param-name>
+	   <param-value>classpath*:context/servlet/servlet-context.xml</param-value>
+	   </init-param>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+	
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+   
+	<listener>
+	   <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	
+	<session-config>
+    <session-timeout>10</session-timeout>
+  </session-config>
+   
+   
+   
+   <error-page>
+    <error-code>400</error-code>
+    <location>/error/code404.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>401</error-code>
+    <location>/error/code404.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error/code404.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>405</error-code>
+    <location>/error/code404.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/error/code500.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>501</error-code>
+    <location>/error/code500.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>503</error-code>
+    <location>/error/code500.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>505</error-code>
+    <location>/error/code500.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/error/error.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/error/error.jsp</location>
+  </error-page>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>restricted method</web-resource-name>
+      <url-pattern>/*</url-pattern>
+      <http-method>PUT</http-method>
+      <http-method>HEAD</http-method>
+      <http-method>DELETE</http-method>
+      <http-method>OPTIONS</http-method>
+      <http-method>TRACE</http-method>
+      <http-method>PATCH</http-method>
+    </web-resource-collection>
+  </security-constraint>
+</web-app>
