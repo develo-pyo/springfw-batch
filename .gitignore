@@ -1,0 +1,11 @@
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+*.class
+*.jar
+*Config.java
+*config.java
