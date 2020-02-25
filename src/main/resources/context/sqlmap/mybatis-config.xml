@@ -9,8 +9,7 @@
 	</settings>
 	
    <typeAliases>
-      <typeAlias  alias="SchdulVO" type="com.spring.batch.sim.service.SchdulVO"/>
-      <typeAlias  alias="BatchParamtrVO" type="com.spring.batch.sim.service.BatchParamtrVO"/>
+      <!-- <typeAlias  alias="ScheduleVO" type="com.spring.batch.sim.service.ScheduleVO"/> -->
    </typeAliases>
 
 	<mappers>

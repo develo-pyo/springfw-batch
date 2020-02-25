@@ -15,21 +15,9 @@
     	<property name="dataSource" ref="dataSource" />
     	<property name="configLocation" value="classpath:context/sqlmap/mybatis-config.xml" />
     </bean>
-    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+    
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
     	<constructor-arg ref="sqlSessionFactory" />
     </bean>
     
-    <bean id="sqlSessionBatch" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
-    	<constructor-arg index="0" ref="sqlSessionFactory" />
-    	<constructor-arg index="1" value="BATCH" />
-    </bean>
-    
-    <bean id="sqlSessionFactorySat" class="org.mybatis.spring.SqlSessionFactoryBean">
-    	<property name="dataSource" ref="dataSourceSat" />
-    	<property name="configLocation" value="classpath:context/sqlmap/mybatis-config.xml" />
-    </bean>
-    <bean id="sqlSessionTemplateSat" class="org.mybatis.spring.SqlSessionTemplate">
-    	<constructor-arg ref="sqlSessionFactorySat" />
-    </bean>
-		
 </beans>
