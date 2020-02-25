@@ -1,14 +1,12 @@
-package com.spring.batch.comm.quartz;
+package com.spring.batch.quartz;
 
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import org.quartz.JobKey;
-import org.quartz.TriggerKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
-import com.spring.batch.comm.quartz.config.QuartzConfig;
+import com.spring.batch.quartz.config.QuartzConfig;
 
 public class QuartzJob extends QuartzJobBean {
 

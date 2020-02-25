@@ -1,4 +1,4 @@
-package com.spring.batch.comm.quartz;
+package com.spring.batch.quartz;
 
 import org.quartz.CronScheduleBuilder;
 import org.quartz.CronTrigger;
@@ -13,8 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Service;
-
-import com.spring.batch.comm.quartz.config.QuartzConfig;
 
 @Service("quartzService")
 public class QuartzService {

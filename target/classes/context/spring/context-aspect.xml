@@ -13,25 +13,6 @@
       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
    
-   <bean id="loggingAspect" class="com.spring.batch.comm.aop.LoggingAop" />
-
-   <aop:config>
-      <aop:aspect ref="loggingAspect">
-         <aop:pointcut id="loggingPointCut" expression="execution(* com.spring.batch..*Impl.*(..))" />
-         <aop:around method="aroundAdvice" pointcut-ref="loggingPointCut" />
-      </aop:aspect>
-   </aop:config>
-   
-   <aop:config>
-      <aop:pointcut id="transactionManager" expression="execution(* com.spring.batch..*Impl.*(..)) 
-                                               AND NOT execution(* com.spring.batch..*Impl.*(..))" />
-      <aop:advisor advice-ref="txAdvice" pointcut-ref="transactionManager" />
-   </aop:config>
-   
-   <aop:config>
-      <aop:pointcut id="txMethod" expression="execution(* com.spring.batch..*Impl.*(..)) 
-                                      AND NOT execution(* com.spring.batch..*Impl.*(..))" />
-      <aop:advisor advice-ref="txAdvice" pointcut-ref="txMethod" />
-   </aop:config>
+   <tx:annotation-driven transaction-manager="txManager" />
    
 </beans>
