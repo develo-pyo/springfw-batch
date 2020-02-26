@@ -20,6 +20,7 @@ public class QuartzStarter {
       quartzService.removeJob();
       quartzService.register();
       quartzService.start();
+      
       System.out.println("start call ! ");
    }
    

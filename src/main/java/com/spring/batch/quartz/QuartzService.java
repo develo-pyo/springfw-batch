@@ -42,7 +42,7 @@ public class QuartzService {
    private CronTrigger createCronTrigger() {
       return TriggerBuilder.newTrigger()
             .withIdentity(new JobKey("sampleJob").getName())
-            .withSchedule(CronScheduleBuilder.cronSchedule("0/5 * * * * ?"))
+            .withSchedule(CronScheduleBuilder.cronSchedule("0/10 * * * * ?"))
             .build();
    }
    
