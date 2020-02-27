@@ -11,13 +11,11 @@ public class QuartzStarter {
    @Autowired
    private QuartzService quartzService;
    
-   public void setQuartzService(QuartzService quartzService) {
-      this.quartzService = quartzService;
-   }
-
    @PostConstruct
    public void init() throws Exception {
-      quartzService.removeJob();
+      System.out.println("init called !!!!");
+      quartzService.deleteJob();
+      quartzService.addListener(new QuartzListener());
       quartzService.register();
       quartzService.start();
       

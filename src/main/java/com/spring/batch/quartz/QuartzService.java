@@ -1,10 +1,13 @@
 package com.spring.batch.quartz;
 
+import javax.annotation.PostConstruct;
+
 import org.quartz.CronScheduleBuilder;
 import org.quartz.CronTrigger;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
 import org.quartz.JobKey;
+import org.quartz.JobListener;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.TriggerBuilder;
@@ -21,14 +24,21 @@ public class QuartzService {
    @Autowired
    private SchedulerFactoryBean schedulerFactoryBean;
    
+   private Scheduler scheduler = null;
+   
+   @PostConstruct
+   public void init(){
+      scheduler = schedulerFactoryBean.getScheduler();
+   }
+   
    public void register() throws Exception {
-      Scheduler scheduler = schedulerFactoryBean.getScheduler();
       JobDetail jobDetail = this.createJobDetail();
       CronTrigger cronTrigger = this.createCronTrigger();
       scheduler.scheduleJob(jobDetail, cronTrigger);
    }
    
    private JobDetail createJobDetail() {
+      logger.info("!!!!!! called createJobdetail");
       JobDetail jobDetail = JobBuilder.newJob(QuartzJob.class)
             .withIdentity("sampleJob")
             .build();
@@ -42,27 +52,27 @@ public class QuartzService {
    private CronTrigger createCronTrigger() {
       return TriggerBuilder.newTrigger()
             .withIdentity(new JobKey("sampleJob").getName())
-            .withSchedule(CronScheduleBuilder.cronSchedule("0/10 * * * * ?"))
+            .withSchedule(CronScheduleBuilder.cronSchedule("0 * * * * ?"))
             .build();
    }
    
    public void start() throws SchedulerException {
-      Scheduler scheduler = schedulerFactoryBean.getScheduler();
       if(scheduler != null && !scheduler.isStarted()) {
          scheduler.start();
       }
    }
    
    public void shutdown() throws SchedulerException, InterruptedException {
-      Scheduler scheduler = schedulerFactoryBean.getScheduler();
       if(scheduler != null && !scheduler.isShutdown()) {
          scheduler.shutdown();
       }
    }
    
-   public void removeJob() throws SchedulerException {
-      Scheduler scheduler = schedulerFactoryBean.getScheduler();
+   public void deleteJob() throws SchedulerException {
       scheduler.deleteJob(new JobKey("sampleJob"));
    }
    
+   public void addListener(JobListener jobListener) throws SchedulerException {
+      scheduler.getListenerManager().addJobListener(jobListener);
+   }
 }
