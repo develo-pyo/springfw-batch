@@ -27,31 +27,26 @@ public class QuartzJob extends QuartzJobBean implements InterruptableJob {
       try {
          
          JobKey jk = context.getJobDetail().getKey();
-         System.out.println("-----------------------------------------");
+         logger.info("-----------------------------------------");
          
          if(!isJobInterrupted) {
             currThread = Thread.currentThread();
             
-            System.out.println("not interrupted !");
-            System.out.println("so, execute job !!");
-            
             int cnt = 20;
             while(cnt > 0){
-               System.out.println("execute job ! inner loop");
-               System.out.println("jk nm : " + jk.getName());
-               System.out.println("cnt : " + cnt);
+               logger.info("cnt : " + cnt);
                
-               File f = new File("/jb_log/schdulerTest_"+cnt);
-               f.createNewFile();
+//               File f = new File("/jb_log/schdulerTest_"+cnt);
+//               f.createNewFile();
                
                Thread.sleep(800L);
                cnt--;
             }
          }
          
-         System.out.println("-----------------------------------------");
+         logger.info("-----------------------------------------");
       } catch (Exception e) {
-         System.out.println("ex in job execute: {"+e.getMessage()+"}");
+         logger.error("ex in job execute: {"+e.getMessage()+"}");
       }
    }
 
@@ -59,7 +54,7 @@ public class QuartzJob extends QuartzJobBean implements InterruptableJob {
    public void interrupt() throws UnableToInterruptJobException {
       isJobInterrupted = true;
       if(currThread != null) {
-         System.out.println("interrupting-{"+currThread.getName()+"}");
+         logger.info("interrupting-{"+currThread.getName()+"}");
          currThread.interrupt();
       }
    }
