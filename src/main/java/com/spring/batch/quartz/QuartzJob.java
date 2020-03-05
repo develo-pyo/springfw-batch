@@ -2,6 +2,7 @@ package com.spring.batch.quartz;
 
 import java.io.File;
 
+import org.quartz.DisallowConcurrentExecution;
 import org.quartz.InterruptableJob;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -15,6 +16,7 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import com.spring.batch.quartz.config.QuartzConfig;
 
+//@DisallowConcurrentExecution
 public class QuartzJob extends QuartzJobBean implements InterruptableJob {
 
    private static final Logger logger = LoggerFactory.getLogger(QuartzConfig.class);
@@ -34,12 +36,8 @@ public class QuartzJob extends QuartzJobBean implements InterruptableJob {
             
             int cnt = 20;
             while(cnt > 0){
-               logger.info("cnt : " + cnt);
-               
-//               File f = new File("/jb_log/schdulerTest_"+cnt);
-//               f.createNewFile();
-               
-               Thread.sleep(800L);
+               logger.info("job is running... will be finished in " + cnt + " sec");
+               Thread.sleep(1000L);
                cnt--;
             }
          }
