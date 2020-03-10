@@ -1,20 +1,15 @@
-package com.spring.batch.quartz;
+package com.spring.quartz;
 
-import java.io.File;
-
-import org.quartz.DisallowConcurrentExecution;
 import org.quartz.InterruptableJob;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.JobKey;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
 import org.quartz.UnableToInterruptJobException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
-import com.spring.batch.quartz.config.QuartzConfig;
+import com.spring.quartz.config.QuartzConfig;
 
 //@DisallowConcurrentExecution
 public class QuartzJob extends QuartzJobBean implements InterruptableJob {

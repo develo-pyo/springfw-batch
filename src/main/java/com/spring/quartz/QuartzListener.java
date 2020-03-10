@@ -1,4 +1,4 @@
-package com.spring.batch.quartz;
+package com.spring.quartz;
 
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;

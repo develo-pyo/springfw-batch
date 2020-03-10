@@ -1,8 +1,4 @@
-package com.spring.batch;
-
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+package com.spring.web;
 
 import org.quartz.SchedulerException;
 import org.slf4j.Logger;
@@ -13,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.spring.batch.quartz.QuartzService;
+import com.spring.quartz.QuartzService;
 
 /**
  * Handles requests for the application home page.

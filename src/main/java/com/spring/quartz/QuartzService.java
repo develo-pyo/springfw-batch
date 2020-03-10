@@ -1,4 +1,4 @@
-package com.spring.batch.quartz;
+package com.spring.quartz;
 
 import javax.annotation.PostConstruct;
 
@@ -68,8 +68,9 @@ public class QuartzService {
       }
    }
    
-   public void deleteJob() throws SchedulerException {
-      scheduler.deleteJob(new JobKey("sampleJob"));
+   public void clear() throws SchedulerException {
+//      scheduler.deleteJob(new JobKey("sampleJob"));
+      scheduler.clear();
    }
    
    public void addListener(JobListener jobListener) throws SchedulerException {

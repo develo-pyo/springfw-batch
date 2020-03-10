@@ -1,4 +1,4 @@
-package com.spring.batch.quartz;
+package com.spring.quartz;
 
 import javax.annotation.PostConstruct;
 
@@ -14,14 +14,13 @@ public class QuartzStarter {
    @PostConstruct
    public void init() throws Exception {
       System.out.println("init called !!!!");
-      quartzService.deleteJob();
+      quartzService.clear();
       quartzService.addListener(new QuartzListener());
       quartzService.register();
       quartzService.start();
       
       System.out.println("start call ! ");
    }
-   
    
    public void destroy() throws Exception {
       quartzService.shutdown();
