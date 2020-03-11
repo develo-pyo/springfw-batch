@@ -13,8 +13,11 @@
    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
       <property name="dataSource" ref="dataSource" />
    </bean>
-    
-    
+   
+   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" lazy-init="true">
+      <property name="dataSource" ref="dataSource" />
+   </bean>
+   
    <tx:advice id="txAdvice" transaction-manager="txManager">
       <!-- 
       <tx:attributes>
