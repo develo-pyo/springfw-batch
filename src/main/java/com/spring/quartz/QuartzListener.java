@@ -27,10 +27,16 @@ public class QuartzListener implements JobListener {
       logger.info("jobExecutionVetoed !!!");
    }
 
-   /** on completed */
+   /** on completed 
+    * async taskExecutor 사용시 배치잡 수행 후 해당 메소드가 호출되는게 아닌
+    * 멀티스레드에서 해당 메소드가 바로 호출되므로 배치잡 수행결과(메타데이터가 아닌 사용자정의 테이블에 배치 결과를 적재할 때)를 
+    * 해당 메소드에서 처리하면 안된다.
+    * 해당 부분을 유의할 것
+    * */
    @Override
    public void jobWasExecuted(JobExecutionContext context, JobExecutionException jobException) {
       logger.info("jobWasExecuted !!!");
+      
    }
    
    
