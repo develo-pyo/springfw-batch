@@ -9,3 +9,4 @@
 *.jar
 *Config.java
 *config.java
+target/*
