@@ -69,6 +69,7 @@ public class QuartzConfig {
    
    //https://advenoh.tistory.com/55
    //quartz job gracefully stop
+   //scheduler만 shutdown 될 경우 gracefully stop이 의미있지만, was자체를 내려버리는 경우 의미가 없음
    @Bean
    public SmartLifecycle gracefulShutdownHookForQuartz(@Qualifier("schedulerFactory") SchedulerFactoryBean schedulerFactoryBean) {
       return new SmartLifecycle() {

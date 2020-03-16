@@ -28,12 +28,12 @@ public class SampleJob implements Tasklet, StepExecutionListener{
    @Override
    public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
       logger.info("execute in sampleJob");
-      int cnt = 20;
+      int cnt = 40;  //40초 동안 실행
       while(cnt > 0){
          logger.info("job is running... will be finished in " + cnt + " sec");
          Thread.sleep(1000L);
          cnt--;
       }
-      return null;
+      return RepeatStatus.FINISHED;
    }
 }
