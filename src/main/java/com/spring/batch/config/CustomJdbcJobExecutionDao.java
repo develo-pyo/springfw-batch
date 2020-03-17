@@ -183,8 +183,7 @@ public class CustomJdbcJobExecutionDao extends AbstractJdbcBatchMetadataDao impl
                logger.debug("Truncating long message before update of JobExecution: " + jobExecution);
             }
          }
-         
-         String executeServerNm = System.getProperty("batch.server.name");
+         String executeServerNm = System.getProperty("org.quartz.scheduler.instanceId");
          
          Object[] parameters = new Object[] { jobExecution.getStartTime(), jobExecution.getEndTime(),
                jobExecution.getStatus().toString(), jobExecution.getExitStatus().getExitCode(), exitDescription,

@@ -43,15 +43,9 @@ public class QuartzJob extends QuartzJobBean implements InterruptableJob {
          String jobNm = context.getJobDetail().getJobDataMap().getString(JOB_NM);
          logger.info("{} started!", jobNm);
          
-         Set<JobExecution> je = jobExplorer.findRunningJobExecutions(jobNm);
-         Iterator<JobExecution> jei = je.iterator();
-         if(jei.hasNext()) {
-            logger.warn("{} is still running, so skipped!", jobNm);
-         } else {
-            JobParametersBuilder jpb = new JobParametersBuilder();
-            jpb.addLong("currTime", System.currentTimeMillis());
-            jobLauncher.run((Job)BeanUtils.getBean(jobNm), jpb.toJobParameters());
-         }
+         JobParametersBuilder jpb = new JobParametersBuilder();
+         jpb.addLong("currTime", System.currentTimeMillis());
+         jobLauncher.run((Job)BeanUtils.getBean(jobNm), jpb.toJobParameters());
       } catch (Exception e) {
          logger.error("ex in job execute: {}", e.getMessage());
       }
