@@ -33,6 +33,7 @@ import org.springframework.jdbc.support.lob.LobHandler;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
+//JobRepositoryFactoryBean 클래스에서 195라인만 수정(커스터마이징한 DAO를 주입받기 위해) 
 public class CustomJobRepositoryFactoryBean extends AbstractJobRepositoryFactoryBean implements InitializingBean {
 
    protected static final Log logger = LogFactory.getLog(JobRepositoryFactoryBean.class);

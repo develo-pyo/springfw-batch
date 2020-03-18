@@ -5,12 +5,14 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+//시작부분
 @Component
 public class QuartzStarter {
    
    @Autowired
    private QuartzService quartzService;
    
+   //시작부분
    @PostConstruct
    public void init() throws Exception {
       quartzService.clear();

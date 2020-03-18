@@ -20,6 +20,7 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
 import com.spring.quartz.config.QuartzConfig;
 import com.spring.quartz.utils.BeanUtils;
 
+//clustering 모드에선 아래 어노테이션이 동작하지 않음
 //@DisallowConcurrentExecution
 public class QuartzJob extends QuartzJobBean implements InterruptableJob {
 

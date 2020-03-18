@@ -34,6 +34,8 @@ import org.springframework.jdbc.support.incrementer.DataFieldMaxValueIncrementer
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
+//JdbcJobExecutionDao 에서 ~JOB_EXECUTION 관련된 부분만 수정
+//BATCH 메타테이블 ~JOB_EXECUTION 테이블에 어떤 배치서버(CLUSTERED)가 JOB을 수행했는지 이력을 남기기 위해 SERVER_NAME 칼럼 추가
 public class CustomJdbcJobExecutionDao extends AbstractJdbcBatchMetadataDao implements JobExecutionDao, InitializingBean {
    
    private static final Log logger = LogFactory.getLog(CustomJdbcJobExecutionDao.class);
@@ -183,6 +185,7 @@ public class CustomJdbcJobExecutionDao extends AbstractJdbcBatchMetadataDao impl
                logger.debug("Truncating long message before update of JobExecution: " + jobExecution);
             }
          }
+         //JOB 실행시 ~JOB_EXECUTION 테이블에 환경변수에 등록되어있는 서버구분값을 함께 저장
          String executeServerNm = System.getProperty("org.quartz.scheduler.instanceId");
          
          Object[] parameters = new Object[] { jobExecution.getStartTime(), jobExecution.getEndTime(),

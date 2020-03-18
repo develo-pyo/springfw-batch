@@ -7,7 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.scheduling.quartz.SpringBeanJobFactory;
 
-/** SchedulerFactoryBean에 스프링 빈 정보 ApplicationContext 주입 */
+// SchedulerFactoryBean에 스프링 빈 정보 ApplicationContext 주입
 public class AutowiringSpringBeanJobFactory extends SpringBeanJobFactory implements ApplicationContextAware {
 
    private transient AutowireCapableBeanFactory beanFactory;
