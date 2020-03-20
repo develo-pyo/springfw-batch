@@ -40,6 +40,7 @@ public class QuartzService {
 //      quartzDAO.removeStartedJobs();
    }
    
+   
    /** 스케쥴러에 스케쥴 등록 */
    public void register() throws Exception {
       //실제 서비스에선 job이름과 cron을 DB에서 관리하도록 처리
@@ -95,4 +96,6 @@ public class QuartzService {
    public void addListener(JobListener jobListener) throws SchedulerException {
       scheduler.getListenerManager().addJobListener(jobListener);
    }
+   
+   
 }
