@@ -1,5 +1,4 @@
-# springfw-batch
-Spring Fw + Quartz + Batch   
+# Spring Fw + Quartz + Batch   
 Spring Framework 5.x    
 Spring Quartz 2.3   
 Spring Batch   
