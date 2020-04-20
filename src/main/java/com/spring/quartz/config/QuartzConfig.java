@@ -21,6 +21,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import com.spring.quartz.QuartzStarter;
+
 @Configuration
 public class QuartzConfig {
    
@@ -130,6 +132,11 @@ public class QuartzConfig {
          logger.info("interrupting job :: jobKey : {}", jobDetail.getKey());
          scheduler.interrupt(jobDetail.getKey());
       }
+   }
+   
+   @Bean(initMethod="init", destroyMethod="destroy")
+   public QuartzStarter quartzStarter() {
+      return new QuartzStarter();
    }
    
 }
